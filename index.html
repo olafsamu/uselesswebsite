@@ -1,1 +1,1940 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>The Useless Website</title>
+
+
+    <style>
+
+
+        /* =====================================================
+           BASIC
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7dd3fc,
+                    #f9a8d4
+                );
+
+            color: #222;
+
+            overflow-x: hidden;
+
+            transition:
+                background 0.5s ease;
+        }
+
+
+        /* =====================================================
+           START SCREEN
+        ===================================================== */
+
+        .start-screen {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 5000;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c4b5fd,
+                    #fda4af,
+                    #fde68a
+                );
+
+            transition:
+                opacity 0.7s ease,
+                visibility 0.7s ease;
+        }
+
+
+        .start-screen.hidden {
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+        }
+
+
+        .start-box {
+
+            width: 90%;
+
+            max-width: 650px;
+
+            padding: 45px 30px;
+
+            background:
+                rgba(255, 255, 255, 0.92);
+
+            border-radius: 30px;
+
+            box-shadow:
+                0 20px 60px
+                rgba(0, 0, 0, 0.2);
+
+            animation:
+                floatBox 2s ease-in-out infinite alternate;
+        }
+
+
+        @keyframes floatBox {
+
+            from {
+                transform:
+                    translateY(0);
+            }
+
+            to {
+                transform:
+                    translateY(-8px);
+            }
+
+        }
+
+
+        .start-box h1 {
+
+            font-size: 64px;
+
+            color: #7c3aed;
+
+            margin-bottom: 15px;
+        }
+
+
+        .start-box p {
+
+            font-size: 20px;
+
+            color: #666;
+
+            margin-bottom: 30px;
+        }
+
+
+        .start-button {
+
+            padding:
+                16px 50px;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            color: white;
+
+            background:
+                #7c3aed;
+
+            border: none;
+
+            border-radius: 15px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 6px 0 #5b21b6;
+
+            transition:
+                transform 0.15s,
+                box-shadow 0.15s;
+        }
+
+
+        .start-button:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 9px 0 #5b21b6;
+        }
+
+
+        .start-button:active {
+
+            transform:
+                translateY(3px);
+
+            box-shadow:
+                0 3px 0 #5b21b6;
+        }
+
+
+
+        /* =====================================================
+           MAIN PAGE
+        ===================================================== */
+
+        .page {
+
+            width: 100%;
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 30px;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity 0.7s ease;
+        }
+
+
+        .page.visible {
+
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        header h1 {
+
+            font-size: 55px;
+
+            color: #7c3aed;
+
+            text-shadow:
+                3px 3px 0 white;
+        }
+
+
+        header p {
+
+            font-size: 18px;
+
+            color: #555;
+        }
+
+
+
+        /* =====================================================
+           MAIN GRID
+        ===================================================== */
+
+        .layout {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 2fr 1fr;
+
+            gap: 20px;
+
+            align-items: start;
+        }
+
+
+
+        /* =====================================================
+           PANELS
+        ===================================================== */
+
+        .panel {
+
+            background:
+                rgba(255, 255, 255, 0.88);
+
+            border-radius: 22px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        .panel h2 {
+
+            color: #7c3aed;
+
+            font-size: 24px;
+
+            margin-bottom: 15px;
+
+            text-align: center;
+        }
+
+
+
+        /* =====================================================
+           CLICK COUNTER
+        ===================================================== */
+
+        .counter {
+
+            font-size: 60px;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            color: #ec4899;
+        }
+
+
+        .counter-label {
+
+            text-align: center;
+
+            color: #777;
+
+            font-size: 16px;
+        }
+
+
+
+        /* =====================================================
+           THE FORBIDDEN BUTTON
+        ===================================================== */
+
+        .click-area {
+
+            min-height: 500px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            position: relative;
+        }
+
+
+        .forbidden-button {
+
+            position: relative;
+
+            padding:
+                30px 45px;
+
+            font-size: 32px;
+
+            font-weight: bold;
+
+            color: white;
+
+            background:
+                #ef4444;
+
+            border: none;
+
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 0 #b91c1c;
+
+            transition:
+                transform 0.15s,
+                left 0.3s,
+                top 0.3s,
+                background 0.3s;
+        }
+
+
+        .forbidden-button:hover {
+
+            transform:
+                scale(1.05);
+        }
+
+
+        .forbidden-button:active {
+
+            transform:
+                scale(0.92);
+        }
+
+
+
+        /* =====================================================
+           CLICK MESSAGE
+        ===================================================== */
+
+        .message {
+
+            text-align: center;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            color: #555;
+
+            margin-top: 20px;
+
+            min-height: 30px;
+        }
+
+
+
+        /* =====================================================
+           ACHIEVEMENTS
+        ===================================================== */
+
+        .achievement {
+
+            background: #f3f4f6;
+
+            padding: 12px;
+
+            border-radius: 12px;
+
+            margin-bottom: 10px;
+
+            opacity: 0.4;
+
+            transition:
+                0.3s;
+        }
+
+
+        .achievement.unlocked {
+
+            opacity: 1;
+
+            background: #fef3c7;
+
+            border:
+                2px solid #f59e0b;
+        }
+
+
+        .achievement-title {
+
+            font-weight: bold;
+
+            margin-bottom: 3px;
+        }
+
+
+        .achievement-text {
+
+            font-size: 13px;
+
+            color: #666;
+        }
+
+
+
+        /* =====================================================
+           USELESS STATS
+        ===================================================== */
+
+        .stat {
+
+            background:
+                #f8fafc;
+
+            border-radius: 12px;
+
+            padding: 12px;
+
+            margin-bottom: 10px;
+
+            text-align: center;
+        }
+
+
+        .stat strong {
+
+            display: block;
+
+            font-size: 23px;
+
+            color: #ec4899;
+        }
+
+
+
+        /* =====================================================
+           SECRET BUTTON
+        ===================================================== */
+
+        .secret-button {
+
+            position: fixed;
+
+            bottom: 10px;
+
+            right: 10px;
+
+            width: 18px;
+
+            height: 18px;
+
+            border: none;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            opacity: 0.08;
+        }
+
+
+        .secret-button:hover {
+
+            opacity: 0.3;
+        }
+
+
+
+        /* =====================================================
+           EVENT MESSAGE
+        ===================================================== */
+
+        .event {
+
+            position: fixed;
+
+            top: 25px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%)
+                translateY(-120px);
+
+            background:
+                #7c3aed;
+
+            color: white;
+
+            padding:
+                15px 25px;
+
+            border-radius:
+                50px;
+
+            font-weight: bold;
+
+            z-index: 6000;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.2);
+
+            transition:
+                transform 0.4s ease;
+
+            text-align: center;
+
+            max-width: 90%;
+        }
+
+
+        .event.show {
+
+            transform:
+                translateX(-50%)
+                translateY(0);
+        }
+
+
+
+        /* =====================================================
+           SCREEN SHAKE
+        ===================================================== */
+
+        .shake {
+
+            animation:
+                shake 0.4s;
+        }
+
+
+        @keyframes shake {
+
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(8px, -8px);
+            }
+
+            50% {
+                transform: translate(-8px, 8px);
+            }
+
+            75% {
+                transform: translate(8px, 8px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+
+        }
+
+
+
+        /* =====================================================
+           BROKEN WEBSITE
+        ===================================================== */
+
+        body.broken {
+
+            background: black;
+
+            color: #00ff00;
+        }
+
+
+        body.broken .panel {
+
+            background: #111;
+
+            color: #00ff00;
+
+            border:
+                2px solid #00ff00;
+        }
+
+
+        body.broken header h1 {
+
+            color: #00ff00;
+        }
+
+
+
+        /* =====================================================
+           RESET BUTTON
+        ===================================================== */
+
+        .reset-button {
+
+            width: 100%;
+
+            margin-top: 15px;
+
+            padding: 10px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #fca5a5;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+
+        .reset-button:hover {
+
+            background: #f87171;
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .layout {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .click-area {
+
+                grid-column:
+                    1 / -1;
+
+                grid-row:
+                    1;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .layout {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .click-area {
+
+                grid-column:
+                    auto;
+            }
+
+
+            header h1 {
+
+                font-size: 40px;
+            }
+
+
+            .start-box h1 {
+
+                font-size: 45px;
+            }
+
+
+            .forbidden-button {
+
+                font-size: 24px;
+
+                padding:
+                    25px 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+
+    <!-- =====================================================
+         START SCREEN
+    ===================================================== -->
+
+    <div
+        id="startScreen"
+        class="start-screen"
+    >
+
+        <div class="start-box">
+
+
+            <h1>
+                The Useless Website
+            </h1>
+
+
+            <p>
+                A website that serves absolutely no purpose.
+                <br>
+                Have fun anyway.
+            </p>
+
+
+            <button
+                id="startButton"
+                class="start-button"
+            >
+                START
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         RANDOM EVENT MESSAGE
+    ===================================================== -->
+
+    <div
+        id="event"
+        class="event"
+    >
+        Something happened.
+    </div>
+
+
+
+    <!-- =====================================================
+         MAIN PAGE
+    ===================================================== -->
+
+    <div
+        id="page"
+        class="page"
+    >
+
+
+
+        <!-- =================================================
+             HEADER
+        ================================================= -->
+
+        <header>
+
+            <h1>
+                The Useless Website
+            </h1>
+
+
+            <p>
+                Whatever you do, do NOT click the button.
+            </p>
+
+        </header>
+
+
+
+        <!-- =================================================
+             MAIN LAYOUT
+        ================================================= -->
+
+        <div class="layout">
+
+
+
+            <!-- =================================================
+                 LEFT PANEL
+            ================================================= -->
+
+            <aside>
+
+
+                <div class="panel">
+
+
+                    <h2>
+                        Click Statistics
+                    </h2>
+
+
+                    <div
+                        id="counter"
+                        class="counter"
+                    >
+                        0
+                    </div>
+
+
+                    <div class="counter-label">
+                        forbidden clicks
+                    </div>
+
+
+                    <br>
+
+
+                    <div class="stat">
+
+                        <strong
+                            id="level"
+                        >
+                            1
+                        </strong>
+
+                        Useless Level
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <strong
+                            id="randomNumber"
+                        >
+                            42
+                        </strong>
+
+                        Totally Random Number
+
+                    </div>
+
+
+                    <button
+                        id="resetButton"
+                        class="reset-button"
+                    >
+                        Reset Everything
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     ACHIEVEMENTS
+                ================================================= -->
+
+                <div
+                    class="panel"
+                    style="margin-top: 20px;"
+                >
+
+
+                    <h2>
+                        🏆 Achievements
+                    </h2>
+
+
+                    <div
+                        id="achievements"
+                    ></div>
+
+
+                </div>
+
+
+            </aside>
+
+
+
+            <!-- =================================================
+                 CENTER
+            ================================================= -->
+
+            <main
+                class="click-area"
+                id="clickArea"
+            >
+
+
+                <div class="panel">
+
+
+                    <button
+                        id="forbiddenButton"
+                        class="forbidden-button"
+                    >
+                        DO NOT CLICK
+                    </button>
+
+
+                    <div
+                        id="message"
+                        class="message"
+                    >
+                        Seriously. Do not click it.
+                    </div>
+
+
+                </div>
+
+
+            </main>
+
+
+
+            <!-- =================================================
+                 RIGHT PANEL
+            ================================================= -->
+
+            <aside>
+
+
+                <div class="panel">
+
+
+                    <h2>
+                        Totally Necessary
+                    </h2>
+
+
+                    <div class="stat">
+
+                        <strong>
+                            0%
+                        </strong>
+
+                        Website usefulness
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <strong>
+                            100%
+                        </strong>
+
+                        Pointlessness
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <strong>
+                            ????
+                        </strong>
+
+                        Website quality
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <strong
+                            id="uselessness"
+                        >
+                            1
+                        </strong>
+
+                        Units of uselessness
+
+                    </div>
+
+
+                </div>
+
+
+            </aside>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SECRET BUTTON
+    ===================================================== -->
+
+    <button
+        id="secretButton"
+        class="secret-button"
+        aria-label="Secret button"
+    >
+    </button>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           START SCREEN
+        ===================================================== */
+
+        const startScreen =
+            document.getElementById(
+                "startScreen"
+            );
+
+
+        const startButton =
+            document.getElementById(
+                "startButton"
+            );
+
+
+        const page =
+            document.getElementById(
+                "page"
+            );
+
+
+        let gameStarted = false;
+
+
+        startButton.addEventListener(
+            "click",
+            function() {
+
+                gameStarted = true;
+
+                startScreen.classList.add(
+                    "hidden"
+                );
+
+                page.classList.add(
+                    "visible"
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           GAME VARIABLES
+        ===================================================== */
+
+        let clicks = 0;
+
+        let level = 1;
+
+        let secretFound = false;
+
+        let broken = false;
+
+
+
+        /* =====================================================
+           HTML ELEMENTS
+        ===================================================== */
+
+        const forbiddenButton =
+            document.getElementById(
+                "forbiddenButton"
+            );
+
+
+        const counter =
+            document.getElementById(
+                "counter"
+            );
+
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        const levelDisplay =
+            document.getElementById(
+                "level"
+            );
+
+
+        const randomNumber =
+            document.getElementById(
+                "randomNumber"
+            );
+
+
+        const uselessness =
+            document.getElementById(
+                "uselessness"
+            );
+
+
+        const event =
+            document.getElementById(
+                "event"
+            );
+
+
+        const clickArea =
+            document.getElementById(
+                "clickArea"
+            );
+
+
+        const secretButton =
+            document.getElementById(
+                "secretButton"
+            );
+
+
+        const resetButton =
+            document.getElementById(
+                "resetButton"
+            );
+
+
+
+        /* =====================================================
+           ACHIEVEMENTS
+        ===================================================== */
+
+        const achievementData = [
+
+            {
+                title:
+                    "😈 You Did It",
+
+                text:
+                    "You clicked the forbidden button.",
+
+                requirement:
+                    () => clicks >= 1
+            },
+
+
+            {
+                title:
+                    "🤦 Why?",
+
+                text:
+                    "You clicked 10 times.",
+
+                requirement:
+                    () => clicks >= 10
+            },
+
+
+            {
+                title:
+                    "🔥 No Self Control",
+
+                text:
+                    "You clicked 50 times.",
+
+                requirement:
+                    () => clicks >= 50
+            },
+
+
+            {
+                title:
+                    "💀 This Is Getting Ridiculous",
+
+                text:
+                    "You clicked 100 times.",
+
+                requirement:
+                    () => clicks >= 100
+            },
+
+
+            {
+                title:
+                    "👑 Useless Legend",
+
+                text:
+                    "You clicked 500 times.",
+
+                requirement:
+                    () => clicks >= 500
+            },
+
+
+            {
+                title:
+                    "👀 Secret Finder",
+
+                text:
+                    "You found the secret button.",
+
+                requirement:
+                    () => secretFound
+            },
+
+
+            {
+                title:
+                    "💻 I Broke It",
+
+                text:
+                    "You completely broke the website.",
+
+                requirement:
+                    () => broken
+            }
+
+        ];
+
+
+
+        /* =====================================================
+           DRAW ACHIEVEMENTS
+        ===================================================== */
+
+        function updateAchievements() {
+
+            const container =
+                document.getElementById(
+                    "achievements"
+                );
+
+
+            container.innerHTML = "";
+
+
+            achievementData.forEach(
+                achievement => {
+
+                    const unlocked =
+                        achievement.requirement();
+
+
+                    const box =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    box.className =
+                        "achievement";
+
+
+                    if (unlocked) {
+
+                        box.classList.add(
+                            "unlocked"
+                        );
+
+                    }
+
+
+                    box.innerHTML = `
+
+                        <div class="achievement-title">
+                            ${achievement.title}
+                        </div>
+
+                        <div class="achievement-text">
+                            ${achievement.text}
+                        </div>
+
+                    `;
+
+
+                    container.appendChild(
+                        box
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           RANDOM MESSAGE
+        ===================================================== */
+
+        function showEvent(
+            text
+        ) {
+
+            event.textContent =
+                text;
+
+
+            event.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                function() {
+
+                    event.classList.remove(
+                        "show"
+                    );
+
+                },
+                2500
+            );
+
+        }
+
+
+
+        /* =====================================================
+           CHANGE RANDOM NUMBER
+        ===================================================== */
+
+        function changeRandomNumber() {
+
+            randomNumber.textContent =
+                Math.floor(
+                    Math.random()
+                    * 1000
+                );
+
+        }
+
+
+
+        /* =====================================================
+           UPDATE GAME
+        ===================================================== */
+
+        function updateGame() {
+
+            counter.textContent =
+                clicks;
+
+
+            level =
+                Math.floor(
+                    clicks / 25
+                ) + 1;
+
+
+            levelDisplay.textContent =
+                level;
+
+
+            uselessness.textContent =
+                clicks;
+
+
+            changeRandomNumber();
+
+
+            updateAchievements();
+
+        }
+
+
+
+        /* =====================================================
+           RANDOM BUTTON BEHAVIOUR
+        ===================================================== */
+
+        function randomButtonBehaviour() {
+
+            const random =
+                Math.random();
+
+
+            /* ---------------------------------------------
+               BUTTON MOVES
+            --------------------------------------------- */
+
+            if (random < 0.25) {
+
+                forbiddenButton.style.position =
+                    "absolute";
+
+
+                const areaRect =
+                    clickArea.getBoundingClientRect();
+
+
+                const maxX =
+                    Math.max(
+                        20,
+                        areaRect.width
+                        - forbiddenButton.offsetWidth
+                        - 40
+                    );
+
+
+                const maxY =
+                    Math.max(
+                        20,
+                        areaRect.height
+                        - forbiddenButton.offsetHeight
+                        - 40
+                    );
+
+
+                forbiddenButton.style.left =
+                    Math.random()
+                    * maxX
+                    + "px";
+
+
+                forbiddenButton.style.top =
+                    Math.random()
+                    * maxY
+                    + "px";
+
+
+                message.textContent =
+                    "HEY! IT MOVED.";
+
+            }
+
+
+            /* ---------------------------------------------
+               BUTTON GETS BIGGER
+            --------------------------------------------- */
+
+            else if (random < 0.4) {
+
+                forbiddenButton.style.transform =
+                    "scale(1.4)";
+
+
+                message.textContent =
+                    "Why is it getting bigger?";
+
+            }
+
+
+            /* ---------------------------------------------
+               BUTTON GETS SMALLER
+            --------------------------------------------- */
+
+            else if (random < 0.55) {
+
+                forbiddenButton.style.transform =
+                    "scale(0.6)";
+
+
+                message.textContent =
+                    "Oh no. Where did it go?";
+
+            }
+
+
+            /* ---------------------------------------------
+               COLOR CHANGE
+            --------------------------------------------- */
+
+            else if (random < 0.7) {
+
+                const colors = [
+
+                    "#ef4444",
+                    "#3b82f6",
+                    "#22c55e",
+                    "#f59e0b",
+                    "#a855f7",
+                    "#ec4899"
+
+                ];
+
+
+                forbiddenButton.style.background =
+                    colors[
+                        Math.floor(
+                            Math.random()
+                            * colors.length
+                        )
+                    ];
+
+
+                message.textContent =
+                    "The button has changed color.";
+
+            }
+
+
+            /* ---------------------------------------------
+               RANDOM TEXT
+            --------------------------------------------- */
+
+            else if (random < 0.85) {
+
+                const messages = [
+
+                    "Why are you still doing this?",
+
+                    "This is not productive.",
+
+                    "Please stop.",
+
+                    "You have made a terrible mistake.",
+
+                    "Congratulations on wasting your time.",
+
+                    "The button disapproves.",
+
+                    "Interesting choice.",
+
+                    "This changes nothing."
+
+                ];
+
+
+                message.textContent =
+                    messages[
+                        Math.floor(
+                            Math.random()
+                            * messages.length
+                        )
+                    ];
+
+            }
+
+
+            /* ---------------------------------------------
+               SCREEN SHAKE
+            --------------------------------------------- */
+
+            else {
+
+                document.body.classList.add(
+                    "shake"
+                );
+
+
+                message.textContent =
+                    "WHAT DID YOU DO?!";
+
+
+                setTimeout(
+                    function() {
+
+                        document.body.classList.remove(
+                            "shake"
+                        );
+
+                    },
+                    400
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           MAIN BUTTON CLICK
+        ===================================================== */
+
+        forbiddenButton.addEventListener(
+            "click",
+            function() {
+
+                if (!gameStarted) {
+                    return;
+                }
+
+
+                clicks += 1;
+
+
+                /* -----------------------------------------
+                   SPECIAL EVENTS
+                ----------------------------------------- */
+
+                if (clicks === 1) {
+
+                    showEvent(
+                        "🎉 YOU CLICKED IT!"
+                    );
+
+                }
+
+
+                else if (clicks === 10) {
+
+                    showEvent(
+                        "🤦 TEN CLICKS. WHY?"
+                    );
+
+                }
+
+
+                else if (clicks === 50) {
+
+                    showEvent(
+                        "🔥 YOU REALLY LIKE THIS BUTTON."
+                    );
+
+                }
+
+
+                else if (clicks === 100) {
+
+                    showEvent(
+                        "💀 100 CLICKS. THERE IS NO GOING BACK."
+                    );
+
+                }
+
+
+                else if (clicks === 500) {
+
+                    showEvent(
+                        "👑 YOU ARE THE USELESS LEGEND."
+                    );
+
+                }
+
+
+                else if (
+                    Math.random() < 0.03
+                ) {
+
+                    showEvent(
+                        "🎁 YOU FOUND... ABSOLUTELY NOTHING."
+                    );
+
+                }
+
+
+                randomButtonBehaviour();
+
+
+                updateGame();
+
+            }
+        );
+
+
+
+        /* =====================================================
+           SECRET BUTTON
+        ===================================================== */
+
+        secretButton.addEventListener(
+            "click",
+            function() {
+
+                secretFound = true;
+
+
+                showEvent(
+                    "👀 YOU FOUND THE SECRET BUTTON!"
+                );
+
+
+                message.textContent =
+                    "There was actually something here.";
+
+                updateAchievements();
+
+            }
+        );
+
+
+
+        /* =====================================================
+           BREAK THE WEBSITE
+        ===================================================== */
+
+        function breakWebsite() {
+
+            if (broken) {
+                return;
+            }
+
+
+            broken = true;
+
+
+            document.body.classList.add(
+                "broken"
+            );
+
+
+            forbiddenButton.textContent =
+                "SYSTEM ERROR";
+
+
+            message.textContent =
+                "ERROR: BUTTON HAS BECOME SELF-AWARE.";
+
+
+            showEvent(
+                "💻 YOU BROKE THE WEBSITE."
+            );
+
+
+            updateAchievements();
+
+        }
+
+
+
+        /* =====================================================
+           BREAK AFTER 250 CLICKS
+        ===================================================== */
+
+        forbiddenButton.addEventListener(
+            "dblclick",
+            function() {
+
+                if (clicks >= 250) {
+
+                    breakWebsite();
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           RANDOM AUTOMATIC TEXT
+        ===================================================== */
+
+        setInterval(
+            function() {
+
+                if (
+                    !gameStarted ||
+                    broken
+                ) {
+                    return;
+                }
+
+
+                const messages = [
+
+                    "Everything is fine.",
+
+                    "This website has no purpose.",
+
+                    "You could be doing something useful.",
+
+                    "The button is watching you.",
+
+                    "Why are you still here?",
+
+                    "This is technically a website."
+
+                ];
+
+
+                if (
+                    Math.random()
+                    < 0.25
+                ) {
+
+                    message.textContent =
+                        messages[
+                            Math.floor(
+                                Math.random()
+                                * messages.length
+                            )
+                        ];
+
+                }
+
+            },
+            5000
+        );
+
+
+
+        /* =====================================================
+           RESET EVERYTHING
+        ===================================================== */
+
+        resetButton.addEventListener(
+            "click",
+            function() {
+
+                const confirmed =
+                    confirm(
+                        "Are you REALLY sure you want to reset your useless progress?"
+                    );
+
+
+                if (!confirmed) {
+                    return;
+                }
+
+
+                clicks = 0;
+
+                level = 1;
+
+                secretFound = false;
+
+                broken = false;
+
+
+                document.body.classList.remove(
+                    "broken"
+                );
+
+
+                forbiddenButton.textContent =
+                    "DO NOT CLICK";
+
+
+                forbiddenButton.style.position =
+                    "relative";
+
+
+                forbiddenButton.style.left =
+                    "auto";
+
+
+                forbiddenButton.style.top =
+                    "auto";
+
+
+                forbiddenButton.style.transform =
+                    "scale(1)";
+
+
+                forbiddenButton.style.background =
+                    "#ef4444";
+
+
+                message.textContent =
+                    "Seriously. Do not click it.";
+
+
+                updateGame();
+
+            }
+        );
+
+
+
+        /* =====================================================
+           INITIAL GAME UPDATE
+        ===================================================== */
+
+        updateGame();
+
+    </script>
+
+
+</body>
+</html>
